@@ -8,8 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PDFObjectInspector : NSDocument {
+@interface PDFObjectInspector : NSDocument<NSOutlineViewDataSource> {
+    
+    NSMutableDictionary *objects;
+    
 @private
+    CGPDFDocumentRef pdf;
+    CGPDFPageRef page;
+    NSOutlineView *outlineView;
 }
+@property (assign) IBOutlet NSOutlineView *outlineView;
+
+@property (nonatomic, retain) NSMutableDictionary *objects;
 
 @end

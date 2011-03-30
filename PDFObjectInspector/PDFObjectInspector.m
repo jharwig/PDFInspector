@@ -8,36 +8,24 @@
 
 #import "PDFObjectInspector.h"
 
+void MyFunction (const char *key, CGPDFObjectRef object, void *info) 
+{    
+    NSMutableArray *keys = info;    
+    NSString *keyStr = [NSString stringWithCString:key encoding:NSUTF8StringEncoding];        
+    [keys addObject:keyStr];        
+}
+
+
 @implementation PDFObjectInspector
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Add your subclass-specific initialization here.
-        // If an error occurs here, send a [self release] message and return nil.
-    }
-    return self;
-}
+@synthesize outlineView, objects;
 
 - (NSString *)windowNibName
 {
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
     return @"PDFObjectInspector";
 }
 
-- (void)windowControllerDidLoadNib:(NSWindowController *)aController
-{
-    [super windowControllerDidLoadNib:aController];
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
-}
-
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError {
-    /*
-     Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    */
     if (outError) {
         *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
     }
@@ -45,14 +33,163 @@
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError {
-    /*
-    Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    */
+    
+    CGDataProviderRef provider = CGDataProviderCreateWithCFData((CFDataRef)data);
+    pdf = CGPDFDocumentCreateWithProvider(provider);
+    CGDataProviderRelease(provider);
+    
+    page = CGPDFDocumentGetPage(pdf, 1);
+    CGPDFPageRetain(page);
+    
+    
     if (outError) {
         *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
     }
     return YES;
 }
 
+
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
+    if (item == nil) {
+        CGPDFDictionaryRef dictionary = CGPDFPageGetDictionary(page);
+        NSMutableArray *keys = [NSMutableArray array];
+        CGPDFDictionaryApplyFunction(dictionary, MyFunction, keys);
+        
+        NSString *key = [keys objectAtIndex:index];
+        CGPDFObjectRef obj;
+        CGPDFDictionaryGetObject(dictionary, [key cStringUsingEncoding:NSUTF8StringEncoding], &obj);        
+        NSValue *objVal = [NSValue valueWithBytes:&obj objCType:@encode(CGPDFObjectRef)];
+        return [[NSArray arrayWithObjects:key, objVal, nil] retain];        
+    }
+    
+    
+    NSArray *comp = (NSArray *)item;
+    NSValue *objVal = [comp objectAtIndex:1];
+    CGPDFObjectRef obj;
+    [objVal getValue:&obj];
+    
+    CGPDFArrayRef array;
+    if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeArray, &array)) {
+        
+        CGPDFObjectRef obj;
+        CGPDFArrayGetObject(array, index, &obj);
+        NSValue *objVal = [NSValue valueWithBytes:&obj objCType:@encode(CGPDFObjectRef)];
+        return [[NSArray arrayWithObjects:[NSString stringWithFormat:@"%lu", index], objVal, nil] retain];    
+    }
+    
+    CGPDFDictionaryRef dictionary;
+    if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeDictionary, &dictionary)) {
+        NSMutableArray *keys = [NSMutableArray array];
+        CGPDFDictionaryApplyFunction(dictionary, MyFunction, keys);
+        NSString *key = [keys objectAtIndex:index];
+        CGPDFObjectRef obj;
+        CGPDFDictionaryGetObject(dictionary, [key cStringUsingEncoding:NSUTF8StringEncoding], &obj);   
+        NSValue *objVal = [NSValue valueWithBytes:&obj objCType:@encode(CGPDFObjectRef)];
+        return [[NSArray arrayWithObjects:key, objVal, nil] retain];     
+    }
+    
+    CGPDFStreamRef stream;
+    if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeStream, &stream)) {
+        CGPDFDictionaryRef dict = CGPDFStreamGetDictionary(stream);
+        NSMutableArray *keys = [NSMutableArray array];
+        CGPDFDictionaryApplyFunction(dict, MyFunction, keys);
+        NSString *key = [keys objectAtIndex:index];
+        CGPDFObjectRef obj;
+        CGPDFDictionaryGetObject(dict, [key cStringUsingEncoding:NSUTF8StringEncoding], &obj);   
+        NSValue *objVal = [NSValue valueWithBytes:&obj objCType:@encode(CGPDFObjectRef)];
+        return [[NSArray arrayWithObjects:key, objVal, nil] retain];  
+    }
+
+    NSAssert(false, @"should not be here");
+    return nil;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {  
+    NSArray *comp = (NSArray *)item;
+    NSValue *objVal = [comp objectAtIndex:1];
+    CGPDFObjectRef obj;
+    [objVal getValue:&obj];
+    
+    CGPDFObjectType type = CGPDFObjectGetType((CGPDFObjectRef)obj);
+
+    return type == kCGPDFObjectTypeDictionary || type == kCGPDFObjectTypeArray || type == kCGPDFObjectTypeStream;
+}
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
+    if (item == nil) {
+        CGPDFDictionaryRef dictionary = CGPDFPageGetDictionary(page);
+        return CGPDFDictionaryGetCount(dictionary);        
+    }
+    
+    NSArray *comp = (NSArray *)item;
+    NSValue *objVal = [comp objectAtIndex:1];
+    CGPDFObjectRef obj;
+    [objVal getValue:&obj];
+    
+    CGPDFArrayRef array;
+    if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeArray, &array)) {
+        return CGPDFArrayGetCount(array);
+    }
+    
+    CGPDFDictionaryRef dictionary;
+    if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeDictionary, &dictionary)) {
+        return CGPDFDictionaryGetCount(dictionary);
+    }
+    
+    CGPDFStreamRef stream;
+    if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeStream, &stream)) {
+        CGPDFDictionaryRef dict = CGPDFStreamGetDictionary(stream);
+        return CGPDFDictionaryGetCount(dict);
+    }
+
+    
+    return 0;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
+    
+    NSArray *comp = (NSArray *)item;
+    if ([[tableColumn identifier] isEqual:@"key"]) {
+        return [comp objectAtIndex:0];
+    } else if ([[tableColumn identifier] isEqual:@"value"]) {
+        NSValue *objVal = [comp objectAtIndex:1];
+        CGPDFObjectRef obj;
+        [objVal getValue:&obj];
+        
+        CGPDFObjectType type = CGPDFObjectGetType(obj);
+        
+        CGPDFBoolean boolean;
+        if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeBoolean, &boolean)) {
+            return boolean == 0 ? @"false" : @"true";
+        }
+        
+        CGPDFReal real;
+        if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeReal, &real)) {
+            return [NSString stringWithFormat:@"%f", real];
+        }
+        
+        CGPDFInteger integer;
+        if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeInteger, &integer)) {
+            return [NSString stringWithFormat:@"%li", integer];
+        }
+
+        CGPDFStringRef string;
+        if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeString, &string)) {
+            return (NSString *) CGPDFStringCopyTextString(string);
+        }        
+              
+        const char *name;
+        if (CGPDFObjectGetValue(obj, kCGPDFObjectTypeName, &name)) {
+            return [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+        }   
+        
+        return  type == kCGPDFObjectTypeDictionary ? @"Dictionary" : 
+            type == kCGPDFObjectTypeArray ? @"Array" : 
+            type == kCGPDFObjectTypeStream ? @"Stream" : 
+            [NSString stringWithFormat:@"type = %i", type];
+    }
+    
+    return @"";
+}
 @end
