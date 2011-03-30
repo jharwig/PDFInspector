@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		91B1D26D1343912800149809 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B1D26C1343912800149809 /* Cocoa.framework */; };
+		91B1D2771343912800149809 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91B1D2751343912800149809 /* InfoPlist.strings */; };
+		91B1D27A1343912800149809 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B1D2791343912800149809 /* main.m */; };
+		91B1D27D1343912800149809 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 91B1D27B1343912800149809 /* Credits.rtf */; };
+		91B1D2801343912800149809 /* PDFObjectInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B1D27F1343912800149809 /* PDFObjectInspector.m */; };
+		91B1D2831343912800149809 /* PDFObjectInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B1D2811343912800149809 /* PDFObjectInspector.xib */; };
+		91B1D2861343912900149809 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B1D2841343912900149809 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		91B1D2681343912800149809 /* PDFObjectInspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFObjectInspector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91B1D26C1343912800149809 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		91B1D26F1343912800149809 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		91B1D2701343912800149809 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		91B1D2711343912800149809 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		91B1D2741343912800149809 /* PDFObjectInspector-Info.plist */ = {isa = PBXFileReference; path = "PDFObjectInspector-Info.plist"; sourceTree = "<group>"; };
+		91B1D2761343912800149809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		91B1D2781343912800149809 /* PDFObjectInspector-Prefix.pch */ = {isa = PBXFileReference; path = "PDFObjectInspector-Prefix.pch"; sourceTree = "<group>"; };
+		91B1D2791343912800149809 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		91B1D27C1343912800149809 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		91B1D27E1343912800149809 /* PDFObjectInspector.h */ = {isa = PBXFileReference; path = PDFObjectInspector.h; sourceTree = "<group>"; };
+		91B1D27F1343912800149809 /* PDFObjectInspector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFObjectInspector.m; sourceTree = "<group>"; };
+		91B1D2821343912800149809 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PDFObjectInspector.xib; sourceTree = "<group>"; };
+		91B1D2851343912900149809 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		91B1D2651343912800149809 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91B1D26D1343912800149809 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		91B1D25D1343912800149809 = {
+			isa = PBXGroup;
+			children = (
+				91B1D2721343912800149809 /* PDFObjectInspector */,
+				91B1D26B1343912800149809 /* Frameworks */,
+				91B1D2691343912800149809 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		91B1D2691343912800149809 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91B1D2681343912800149809 /* PDFObjectInspector.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91B1D26B1343912800149809 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91B1D26C1343912800149809 /* Cocoa.framework */,
+				91B1D26E1343912800149809 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91B1D26E1343912800149809 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91B1D26F1343912800149809 /* AppKit.framework */,
+				91B1D2701343912800149809 /* CoreData.framework */,
+				91B1D2711343912800149809 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		91B1D2721343912800149809 /* PDFObjectInspector */ = {
+			isa = PBXGroup;
+			children = (
+				91B1D27E1343912800149809 /* PDFObjectInspector.h */,
+				91B1D27F1343912800149809 /* PDFObjectInspector.m */,
+				91B1D2811343912800149809 /* PDFObjectInspector.xib */,
+				91B1D2841343912900149809 /* MainMenu.xib */,
+				91B1D2731343912800149809 /* Supporting Files */,
+			);
+			path = PDFObjectInspector;
+			sourceTree = "<group>";
+		};
+		91B1D2731343912800149809 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				91B1D2741343912800149809 /* PDFObjectInspector-Info.plist */,
+				91B1D2751343912800149809 /* InfoPlist.strings */,
+				91B1D2781343912800149809 /* PDFObjectInspector-Prefix.pch */,
+				91B1D2791343912800149809 /* main.m */,
+				91B1D27B1343912800149809 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		91B1D2671343912800149809 /* PDFObjectInspector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91B1D2891343912900149809 /* Build configuration list for PBXNativeTarget "PDFObjectInspector" */;
+			buildPhases = (
+				91B1D2641343912800149809 /* Sources */,
+				91B1D2651343912800149809 /* Frameworks */,
+				91B1D2661343912800149809 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PDFObjectInspector;
+			productName = PDFObjectInspector;
+			productReference = 91B1D2681343912800149809 /* PDFObjectInspector.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91B1D25F1343912800149809 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Near Infinity Corporation";
+			};
+			buildConfigurationList = 91B1D2621343912800149809 /* Build configuration list for PBXProject "PDFObjectInspector" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 91B1D25D1343912800149809;
+			productRefGroup = 91B1D2691343912800149809 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				91B1D2671343912800149809 /* PDFObjectInspector */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		91B1D2661343912800149809 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91B1D2771343912800149809 /* InfoPlist.strings in Resources */,
+				91B1D27D1343912800149809 /* Credits.rtf in Resources */,
+				91B1D2831343912800149809 /* PDFObjectInspector.xib in Resources */,
+				91B1D2861343912900149809 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		91B1D2641343912800149809 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91B1D27A1343912800149809 /* main.m in Sources */,
+				91B1D2801343912800149809 /* PDFObjectInspector.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		91B1D2751343912800149809 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91B1D2761343912800149809 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		91B1D27B1343912800149809 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91B1D27C1343912800149809 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		91B1D2811343912800149809 /* PDFObjectInspector.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91B1D2821343912800149809 /* en */,
+			);
+			name = PDFObjectInspector.xib;
+			sourceTree = "<group>";
+		};
+		91B1D2841343912900149809 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91B1D2851343912900149809 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		91B1D2871343912900149809 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		91B1D2881343912900149809 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		91B1D28A1343912900149809 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PDFObjectInspector/PDFObjectInspector-Prefix.pch";
+				INFOPLIST_FILE = "PDFObjectInspector/PDFObjectInspector-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		91B1D28B1343912900149809 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PDFObjectInspector/PDFObjectInspector-Prefix.pch";
+				INFOPLIST_FILE = "PDFObjectInspector/PDFObjectInspector-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		91B1D2621343912800149809 /* Build configuration list for PBXProject "PDFObjectInspector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91B1D2871343912900149809 /* Debug */,
+				91B1D2881343912900149809 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91B1D2891343912900149809 /* Build configuration list for PBXNativeTarget "PDFObjectInspector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91B1D28A1343912900149809 /* Debug */,
+				91B1D28B1343912900149809 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91B1D25F1343912800149809 /* Project object */;
+}
