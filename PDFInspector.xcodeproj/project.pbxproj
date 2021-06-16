@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		910F823926432F8D00BCD8DD /* PDFKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 910F823826432F8D00BCD8DD /* PDFKit.framework */; };
+		911985F3265D41CC00F55691 /* PDFDraggableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911985F2265D41CC00F55691 /* PDFDraggableImage.swift */; };
 		912E6762248979E40046C000 /* PDFObjectPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912E6761248979E40046C000 /* PDFObjectPreview.swift */; };
 		91B1D26D1343912800149809 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B1D26C1343912800149809 /* Cocoa.framework */; };
 		91B1D2771343912800149809 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91B1D2751343912800149809 /* InfoPlist.strings */; };
@@ -16,9 +18,12 @@
 		91B1D2861343912900149809 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B1D2841343912900149809 /* MainMenu.xib */; };
 		91F3548024A1066B00225166 /* PDFUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F3547F24A1066B00225166 /* PDFUtil.m */; };
 		91F3548324A12EF500225166 /* PDFEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F3548224A12EF500225166 /* PDFEmptyView.swift */; };
+		91FFC89B2677CD8F0023B136 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FFC89A2677CD8F0023B136 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		910F823826432F8D00BCD8DD /* PDFKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDFKit.framework; path = System/Library/Frameworks/PDFKit.framework; sourceTree = SDKROOT; };
+		911985F2265D41CC00F55691 /* PDFDraggableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDraggableImage.swift; sourceTree = "<group>"; };
 		912E6761248979E40046C000 /* PDFObjectPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFObjectPreview.swift; sourceTree = "<group>"; };
 		91B1D2681343912800149809 /* PDFInspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDFInspector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91B1D26C1343912800149809 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -36,6 +41,8 @@
 		91F3547F24A1066B00225166 /* PDFUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFUtil.m; sourceTree = "<group>"; };
 		91F3548124A106DB00225166 /* PDFUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFUtil.h; sourceTree = "<group>"; };
 		91F3548224A12EF500225166 /* PDFEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFEmptyView.swift; sourceTree = "<group>"; };
+		91FFC89A2677CD8F0023B136 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		91FFC89E2677D1370023B136 /* PDFInspector-Bridging-header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDFInspector-Bridging-header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				910F823926432F8D00BCD8DD /* PDFKit.framework in Frameworks */,
 				91B1D26D1343912800149809 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,6 +78,7 @@
 		91B1D26B1343912800149809 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				910F823826432F8D00BCD8DD /* PDFKit.framework */,
 				91B1D26C1343912800149809 /* Cocoa.framework */,
 				91B1D26E1343912800149809 /* Other Frameworks */,
 			);
@@ -89,15 +98,18 @@
 		91B1D2721343912800149809 /* PDFInspector */ = {
 			isa = PBXGroup;
 			children = (
+				91FFC89A2677CD8F0023B136 /* AppDelegate.swift */,
 				91B1D27E1343912800149809 /* PDFObjectInspector.h */,
 				91B1D27F1343912800149809 /* PDFObjectInspector.m */,
 				91B1D2811343912800149809 /* PDFObjectInspector.xib */,
 				912E6761248979E40046C000 /* PDFObjectPreview.swift */,
+				911985F2265D41CC00F55691 /* PDFDraggableImage.swift */,
 				91F3548224A12EF500225166 /* PDFEmptyView.swift */,
 				91F3548124A106DB00225166 /* PDFUtil.h */,
 				91F3547F24A1066B00225166 /* PDFUtil.m */,
 				91B1D2841343912900149809 /* MainMenu.xib */,
 				91B1D2731343912800149809 /* Supporting Files */,
+				91FFC89E2677D1370023B136 /* PDFInspector-Bridging-header.h */,
 			);
 			path = PDFInspector;
 			sourceTree = "<group>";
@@ -187,6 +199,8 @@
 				91F3548024A1066B00225166 /* PDFUtil.m in Sources */,
 				91B1D27A1343912800149809 /* main.m in Sources */,
 				91B1D2801343912800149809 /* PDFObjectInspector.m in Sources */,
+				91FFC89B2677CD8F0023B136 /* AppDelegate.swift in Sources */,
+				911985F3265D41CC00F55691 /* PDFDraggableImage.swift in Sources */,
 				912E6762248979E40046C000 /* PDFObjectPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,6 +325,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinepointsoftware.PDFObjectInspector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
@@ -337,6 +352,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pinepointsoftware.PDFObjectInspector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-header.h";
 				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};

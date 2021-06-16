@@ -27,6 +27,7 @@ void CollectKeysCFDict(const void *key, const void *value, void *context) {
 - (void)dealloc
 {
     CGPDFDocumentRelease(pdf);
+    [pdfDocument release];
     outlineView = nil;
     previewView = nil;
     [super dealloc];
@@ -54,9 +55,11 @@ void CollectKeysCFDict(const void *key, const void *value, void *context) {
     [self.view.window setTitle:[url lastPathComponent]];    
     
     CGPDFDocumentRelease(pdf);
+    [pdfDocument release];
 
     CGDataProviderRef provider = CGDataProviderCreateWithURL((CFURLRef)url);
     pdf = CGPDFDocumentCreateWithProvider(provider);
+    pdfDocument = [[PDFDocument alloc] initWithURL:url];
     CGDataProviderRelease(provider);
     
     [self.outlineView reloadData];
@@ -84,6 +87,7 @@ void CollectKeysCFDict(const void *key, const void *value, void *context) {
     
     CGDataProviderRef provider = CGDataProviderCreateWithCFData((CFDataRef)data);
     pdf = CGPDFDocumentCreateWithProvider(provider);
+    pdfDocument = [[PDFDocument alloc] initWithData:data];
     CGDataProviderRelease(provider);
        
     if (outError) {
@@ -207,6 +211,7 @@ void CollectKeysCFDict(const void *key, const void *value, void *context) {
     
     if ([objVal isEqualTo:[NSNull null]]) return NO;
     if ([objVal isKindOfClass:[NSString class]]) return NO;
+    if ([objVal isKindOfClass:[NSNumber class]]) return NO;
     
     if ([comp count] == 4 && [[comp objectAtIndex:2] isEqual:[NSNull null]]) {
         if ([[comp objectAtIndex:3] intValue] == 2) {
@@ -285,6 +290,7 @@ void CollectKeysCFDict(const void *key, const void *value, void *context) {
         if ([objVal isKindOfClass:[NSString class]]) return objVal;
         if ([objVal isKindOfClass:[NSDictionary class]]) return @"Dictionary";
         if ([objVal isKindOfClass:[NSArray class]]) return @"Array";
+        if ([objVal isKindOfClass:[NSNumber class]]) return [objVal description];
                  
         CGPDFObjectRef obj;
         [objVal getValue:&obj];
@@ -370,6 +376,8 @@ void CollectKeysCFDict(const void *key, const void *value, void *context) {
             [previewView setImage:nil];
             return;
         }
+        
+        
         CGRect pageRect = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
         
         if (CGSizeEqualToSize(pageRect.size, CGSizeZero)) {
@@ -381,11 +389,14 @@ void CollectKeysCFDict(const void *key, const void *value, void *context) {
         NSImage *image = [[NSImage alloc] initWithSize:pageRect.size];
         [image lockFocus];
         CGContextRef context = [[NSGraphicsContext currentContext] CGContext];
-        CGContextSaveGState(context);
-        CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
-        CGContextFillRect(context, pageRect);
-        CGContextDrawPDFPage(context, page);
+        
+        PDFPage *pdfPageForDisplay = [pdfDocument pageAtIndex:index - 1];
+                CGContextSaveGState(context);
+                CGContextSetRGBFillColor(context, 1.0,1.0,1.0,1.0);
+                CGContextFillRect(context, pageRect);
+        [pdfPageForDisplay drawWithBox:kPDFDisplayBoxCropBox toContext:context];
         CGContextRestoreGState(context);
+        
         [image unlockFocus];
         
         [previewView setImage:image];
@@ -402,7 +413,7 @@ void CollectKeysCFDict(const void *key, const void *value, void *context) {
             subType = [NSString stringWithCString:string encoding:NSASCIIStringEncoding];
         }
         
-        if ([subType isEqualToString:@"Image"] || format != CGPDFDataFormatRaw) {
+        if ([subType isEqualToString:@"Image"]) {//} || format != CGPDFDataFormatRaw) {
             NSImage *image = getImageRef(stream);
             [previewView setImage:image];
         } else {

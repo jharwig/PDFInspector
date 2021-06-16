@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +20,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="133" y="235" width="751" height="455"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="6" customClass="PDFEmptyView" customModule="PDFInspector" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="751" height="455"/>
@@ -72,7 +72,6 @@
                                         <tableColumns>
                                             <tableColumn identifier="key" width="118" minWidth="40" maxWidth="1000" id="N1q-is-NHx">
                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
-                                                    <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                 </tableHeaderCell>
@@ -85,7 +84,6 @@
                                             </tableColumn>
                                             <tableColumn identifier="value" width="269" minWidth="40" maxWidth="1000" id="4Vj-Zs-At4">
                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Value">
-                                                    <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                 </tableHeaderCell>
@@ -142,7 +140,7 @@
             <point key="canvasLocation" x="185" y="702"/>
         </splitView>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="FzD-re-1cQ">
+        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="FzD-re-1cQ" customClass="PDFDraggableImage" customModule="PDFInspector" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="261" height="246"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="zUN-v2-5Dk"/>
@@ -153,7 +151,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="k4W-cc-g6x">
                 <rect key="frame" x="0.0" y="0.0" width="240" height="135"/>
-                <autoresizingMask key="autoresizingMask"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" findStyle="bar" incrementalSearchingEnabled="YES" allowsCharacterPickerTouchBarItem="NO" textCompletion="NO" id="5lY-wY-R3O">
                         <rect key="frame" x="0.0" y="0.0" width="240" height="135"/>

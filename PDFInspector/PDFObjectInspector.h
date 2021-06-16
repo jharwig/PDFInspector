@@ -1,10 +1,12 @@
 #import <Cocoa/Cocoa.h>
+#import <PDFKit/PDFKit.h>
 
 @class PDFObjectPreview;
 
 @interface PDFObjectInspector : NSDocument<NSOutlineViewDataSource> {
 @private
     CGPDFDocumentRef pdf;
+    PDFDocument *pdfDocument;
     NSOutlineView *outlineView;
     PDFObjectPreview *previewView;
     NSSplitView *splitView;
